@@ -136,7 +136,11 @@ class GmlExporter:
             gpkg_layer = gpkg_data_source.GetLayerByIndex(layer_index)
 
             if gpkg_layer.GetFeatureCount() > 0:
-                indexes.append((gpkg_layer.GetNextFeature().GetField('RETEG_ID'), layer_index))
+                try:
+                    indexes.append((gpkg_layer.GetNextFeature().GetField('RETEG_ID'), layer_index))
+                except KeyError:
+                    pass    # simple skip extra tables
+                    # TODO it would be better if only XSD layers were added
                 gpkg_layer.ResetReading()
             
         indexes.sort(reverse = True)
@@ -146,7 +150,8 @@ class GmlExporter:
     def export_to_gml(self, gpkg_path, gml_path):
         ogr.UseExceptions()
 
-        try:
+        #try:
+        if True:    # TODO error handling ???
             gpkg_data_source = ogr.GetDriverByName('gpkg').Open(gpkg_path)
 
             root = Element('gml:FeatureCollection')
@@ -176,6 +181,6 @@ class GmlExporter:
             tree.write(gml_path, xml_declaration = True, encoding = 'UTF-8')
             
             self.iface.messageBar().pushMessage("Sikeres GML export", "A GeoPackage fájl sikeresen exportálásra került az alábbi helyre: " + gml_path, level = Qgis.Success, duration = 5)
-        except Exception as err:
-            QgsMessageLog.logMessage("Sikertelen E-Ing GML export: " + str(err), GmlExporter.MESSAGE_TAG, level = Qgis.Critical)
-            self.iface.messageBar().pushMessage("Sikertelen E-Ing GML export", "Nem sikerült exportálni az alábbi GeoPackage fájlt: " + gpkg_path, level = Qgis.Critical, duration = 5)
+        #except Exception as err:
+        #    QgsMessageLog.logMessage("Sikertelen E-Ing GML export: " + str(err), GmlExporter.MESSAGE_TAG, level = Qgis.Critical)
+        #    self.iface.messageBar().pushMessage("Sikertelen E-Ing GML export", "Nem sikerült exportálni az alábbi GeoPackage fájlt: " + gpkg_path, level = Qgis.Critical, duration = 5)
