@@ -28,7 +28,7 @@ class GmlValidator():
         importer.import_gml_metadata_to_gpkg(gml_path)
         gml_data_source = ogr.GetDriverByName('gml').Open(gml_path)
         name = f"eing_{importer.xsd_version}.xsd"
-        xsd_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
+        xsd_path = os.path.join(plugin_dir, "xsds", name)
         # load and prepare schema
         try:
             xmlschema_doc = etree.parse(xsd_path)
