@@ -13,13 +13,12 @@ class GpkgLoader():
         """ initialize """
         self.iface = iface
 
-    def load_layers(self, gpkg_path, layer_list=None):
+    def load_layers(self, gpkg_path, plugin_dir, layer_list=None):
         """ Load layers from GeoPackage
 
             :param gpkg_path: path to GeoPackage file
             :param layer_list: list of layer names to load
         """
-        plugin_dir = os.path.dirname(__file__)
         gpkg_data_source = ogr.Open(gpkg_path)
         if layer_list is None or len(layer_list) == 0:
             # get geometry types and layer names from GeoPackage
