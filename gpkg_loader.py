@@ -33,7 +33,7 @@ class GpkgLoader():
                                                layer, 'ogr')
             if vlayer:
                 # try to load qml style
-                qml_path = plugin_dir + os.path.normcase("/") + layer + ".qml"
+                qml_path = os.path.join(plugin_dir, "styles", layer + ".qml")
                 if os.path.exists(qml_path):
                     vlayer.loadNamedStyle(qml_path)
                 # set visibility off on empty layers
