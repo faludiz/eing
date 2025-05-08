@@ -23,9 +23,11 @@ from .resources import *
 from .import_plugin_dialog import ImportDialog
 from .export_plugin_dialog import ExportDialog
 from .load_plugin_dialog import LoadDialog
+from .validate_plugin_dialog import ValidateDialog
 from .gml_exporter import GmlExporter
 from .gml_importer import GmlImporter
 from .gpkg_loader import GpkgLoader
+from .gml_validator import GmlValidator
 
 class GmlImportExport:
     """QGIS Plugin Implementation."""
@@ -62,9 +64,11 @@ class GmlImportExport:
         self.first_start_import = None
         self.first_start_export = None
         self.first_start_load = None
+        self.first_start_validate = None
         self.dlg_import = None
         self.dlg_export = None
         self.dlg_load = None
+        self.dlg_validate = None
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -156,11 +160,14 @@ class GmlImportExport:
                         parent=self.iface.mainWindow(), add_to_toolbar=False)
         self.add_action(None, text=self.tr('Load'), callback=self.run_load,
                         parent=self.iface.mainWindow(), add_to_toolbar=False)
+        self.add_action(None, text=self.tr('Validate'), callback=self.run_validate,
+                        parent=self.iface.mainWindow(), add_to_toolbar=False)
 
         # will be set False in run()
         self.first_start_import = True
         self.first_start_export = True
         self.first_start_load = True
+        self.first_start_validate = True
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -192,7 +199,8 @@ class GmlImportExport:
             if self.dlg_import.load_check.isChecked():
                 # Load layers
                 loader = GpkgLoader(self.iface)
-                loader.load_layers(self.dlg_import.import_gpkg_path.filePath())
+                loader.load_layers(self.dlg_import.import_gpkg_path.filePath(),
+                                   self.plugin_dir)
 
     def run_export(self):
         """Run method that performs all the real work"""
@@ -229,4 +237,24 @@ class GmlImportExport:
         # See if OK was pressed
         if result:
             loader = GpkgLoader(self.iface)
-            loader.load_layers(self.dlg_load.gpkg_path.filePath())
+            loader.load_layers(self.dlg_load.gpkg_path.filePath(),
+                               self.plugin_dir)
+
+    def run_validate(self):
+        """Run method that performs all the real work"""
+
+        # Create the dialog with elements (after translation) and keep reference
+        # Only create GUI ONCE in callback, so that it will only load when the plugin is started
+        if self.first_start_validate:
+            self.first_start_validate = False
+            self.dlg_validate = ValidateDialog()
+
+        # show the dialog
+        self.dlg_validate.show()
+        # Run the dialog event loop
+        result = self.dlg_validate.exec_()
+        # See if OK was pressed
+        if result:
+            validator = GmlValidator(self.iface)
+            validator.validate_gml(self.dlg_validate.gml.filePath(),
+                               self.plugin_dir)
