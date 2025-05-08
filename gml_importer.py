@@ -107,4 +107,4 @@ class GmlImporter:
             os.remove(gpkg_path)
 
             QgsMessageLog.logMessage("Sikertelen GML megnyitás: " + str(err), GmlImporter.MESSAGE_TAG, level = Qgis.Critical)
-            self.iface.messageBar().pushMessage("Sikertelen GML import", "Nem sikerült beimportálni az alábbi GML fájlt: " + gml_path, level = Qgis.Critical, duration = 5)
+            self.iface.messageBar().pushMessage("Sikertelen GML import", "Nem sikerült importálni az alábbi GML fájlt: " + gml_path, level = Qgis.Critical, duration = 5)
