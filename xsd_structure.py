@@ -31,6 +31,7 @@ class XsdStructure:
         self.xsd_version = xsd_version
         self.supported_version = None
         self.layer_definitions = None
+        self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
         self.eov_spatial_reference = osr.SpatialReference()
         self.eov_spatial_reference.ImportFromEPSG(23700)
@@ -62,12 +63,12 @@ class XsdStructure:
     def build_structure(self):
         """A eing_version.xsd alapján felépít egy struktúrát, ami alapján létre lehet hozni a GeoPackage rétegeket."""
         name = f"eing_{self.xsd_version}.xsd"
-        fname = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
-        if not os.path.exists(fname):
+        xsd_path = os.path.join(self.plugin_dir, "xsds", name)
+        if not os.path.exists(xsd_path):
             raise Exception(f"No XSD found for {self.xsd_version} version ({fname})")
-        xsd_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                fname)
-        QgsMessageLog.logMessage("Felhasznált E-Ing XSD struktúra: " + xsd_path, XsdStructure.MESSAGE_TAG, level = Qgis.Info)
+        QgsMessageLog.logMessage("Felhasznált E-Ing XSD struktúra: " +
+                                 xsd_path, XsdStructure.MESSAGE_TAG,
+                                 level = Qgis.Info)
 
         xsd_root = ET.parse(xsd_path).getroot()
 
@@ -127,7 +128,7 @@ class XsdStructure:
         raise Exception("Nem támogatott XSD mező típus: " + xsd_field_type)
 
     def create_gpkg_layer(self, gpkg_data_source, layer_name):
-        """A feldolgozott vazrajz.xsd alapján előállítja az adott réteghez tartozó GeoPackage réteget."""
+        """A feldolgozott xsd alapján előállítja az adott réteghez tartozó GeoPackage réteget."""
         xsd_structure = self.layer_definitions[layer_name]
 
         for xsd_field in xsd_structure:
