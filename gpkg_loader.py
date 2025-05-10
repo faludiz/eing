@@ -3,7 +3,7 @@
 """
 import os.path
 from osgeo import ogr
-from qgis.core import Qgis, QgsMessageLog, QgsProject
+from qgis.core import QgsProject
 
 class GpkgLoader():
     """ loader class for GeoPackage
@@ -21,6 +21,7 @@ class GpkgLoader():
             :param gpkg_path: path to GeoPackage file
             :param layer_list: list of layer names to load
         """
+        ogr.UseExceptions()
         gpkg_data_source = ogr.Open(gpkg_path)
         if layer_list is None or len(layer_list) == 0:
             # get geometry types and layer names from GeoPackage
@@ -45,7 +46,6 @@ class GpkgLoader():
                     if node:
                         node.setItemVisibilityChecked(False)
             else:
-                QgsMessageLog.logMessage(self.tr("Cannot load layer: ") + layer)
                 self.iface.messageBar().pushMessage("GeoPackage",
                                                     self.tr("Cannot load layer: ")
                                                     + layer,

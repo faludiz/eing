@@ -27,7 +27,7 @@ class GmlValidator():
                                  self.tr("Python lxml package not found, please install it."))
             return
 
-        importer = GmlImporter(self.iface)
+        importer = GmlImporter(self.iface, self.tr)
         importer.import_gml_metadata_to_gpkg(gml_path)
         #gml_data_source = ogr.GetDriverByName('gml').Open(gml_path)
         name = f"eing_{importer.xsd_version}.xsd"

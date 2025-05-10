@@ -47,8 +47,7 @@ class GmlImportExport:
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
         locale_path = os.path.join(self.plugin_dir, 'i18n',
-                                   'Import_{}.qm'.format(locale))
-
+                                   '{}.qm'.format(locale))
         if os.path.exists(locale_path):
             self.translator = QTranslator()
             self.translator.load(locale_path)
@@ -186,7 +185,7 @@ class GmlImportExport:
 
             if self.dlg_import.load_check.isChecked():
                 # Load layers
-                loader = GpkgLoader(self.iface)
+                loader = GpkgLoader(self.iface, self.tr)
                 loader.load_layers(self.dlg_import.import_gpkg_path.filePath())
 
     def run_export(self):
@@ -215,7 +214,7 @@ class GmlImportExport:
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.first_start_load:
             self.first_start_load = False
-            self.dlg_load = LoadDialog(tr)
+            self.dlg_load = LoadDialog(self.tr)
 
         # show the dialog
         self.dlg_load.show()
@@ -224,8 +223,7 @@ class GmlImportExport:
         # See if OK was pressed
         if result:
             loader = GpkgLoader(self.iface, self.tr)
-            loader.load_layers(self.dlg_load.gpkg_path.filePath(),
-                               self.plugin_dir)
+            loader.load_layers(self.dlg_load.gpkg_path.filePath())
 
     def run_validate(self):
         """Run method that performs all the real work"""
