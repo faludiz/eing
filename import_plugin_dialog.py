@@ -24,6 +24,7 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 class ImportDialog(QtWidgets.QDialog, FORM_CLASS):
     """ Dialog to specify input gml file and output GeoPackage """
     def import_gml_path_changed(self):
+        """ update gpkg field """
         self.import_gpkg_path.setFilePath(self.import_gml_path.filePath().replace(".gml", ".gpkg"))
 
     def accept_import(self):
@@ -31,27 +32,28 @@ class ImportDialog(QtWidgets.QDialog, FORM_CLASS):
         if len(self.import_gpkg_path.filePath()) == 0 or \
            len(self.import_gml_path.filePath()) == 0:
             alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          "Üres mező",
-                                          "Mindkét mezőt ki kell tölteni!")
+                                          self.tr("Empty field"),
+                                          self.tr("Fill both fields"))
             alert.exec_()
             return
         if not os.path.exists(self.import_gml_path.filePath()):
             alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          "Hiányzó fájl",
-                                          "Az importálandó GML fájl nem létezik!")
+                                          self.tr("Misisng file"),
+                                          self.tr("GML file does not exist"))
             alert.exec_()
             return
         if os.path.exists(self.import_gpkg_path.filePath()):
             alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          "Létező fájl",
-                                          "A GeoPackage fájl már létezik!")
+                                          self.tr("Existing file"),
+                                          self.tr("GeoPackage already exists"))
             alert.exec_()
             return
         self.accept()
 
-    def __init__(self, parent=None):
+    def __init__(self, tr, parent=None):
         """Constructor."""
         super(ImportDialog, self).__init__(parent)
+        self.tr = tr
         # Set up the user interface from Designer through FORM_CLASS.
         # After self.setupUi() you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see

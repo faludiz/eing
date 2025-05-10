@@ -30,12 +30,15 @@ class ExportDialog(QtWidgets.QDialog, FORM_CLASS):
         if os.path.exists(self.export_gpkg_path.filePath()):
             self.accept()
         else:
-            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning, "Hiányzó fájl", "Az exportálásra kiválasztott GeoPackage fájl nem létezik!")
+            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
+                                          self.tr("Missing file"),
+                                          self.tr("GeoPackage to be exported not found"))
             alert.exec_()
 
-    def __init__(self, parent=None):
+    def __init__(self, tr, parent=None):
         """Constructor."""
         super(ExportDialog, self).__init__(parent)
+        self.tr = tr
         # Set up the user interface from Designer through FORM_CLASS.
         # After self.setupUi() you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see

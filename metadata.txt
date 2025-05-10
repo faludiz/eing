@@ -11,8 +11,8 @@ author=Tigra Kft. & Zoltan Siki
 
 about=Plugin to import and export Hungarian E-ING GML data to/from GeoPackage
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/zsiki/eing/issues
+repository=https://github.com/zsiki/eing
 # End of mandatory metadata
 
 # Recommended items:
@@ -24,7 +24,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=eing, gml, geopackage
 
-homepage=http://homepage
+homepage=https://github.com/zsiki/eing
 category=Vector
 icon=icon.ico
 # experimental flag

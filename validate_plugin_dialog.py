@@ -29,15 +29,16 @@ class ValidateDialog(QtWidgets.QDialog, FORM_CLASS):
         """ check for empty field """
         if len(self.gml.filePath()) == 0:
             alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          "Üres mező",
-                                          "A GML mezőt ki kell tölteni!")
+                                          self.tr("Empty field"),
+                                          "GML field is obligatory")
             alert.exec_()
             return
         self.accept()
 
-    def __init__(self, parent=None):
+    def __init__(self, tr, parent=None):
         """Constructor."""
         super(ValidateDialog, self).__init__(parent)
+        self.tr = tr
         # Set up the user interface from Designer through FORM_CLASS.
         # After self.setupUi() you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see

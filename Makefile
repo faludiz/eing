@@ -24,14 +24,14 @@
 #Add iso code for any locales you want to support here (space separated)
 # default is no locales
 # LOCALES = af
-LOCALES =
+LOCALES = hu
 
 # If locales are enabled, set the name of the lrelease binary on your system. If
 # you have trouble compiling the translations, you may have to specify the full path to
 # lrelease
 #LRELEASE = lrelease
 #LRELEASE = lrelease-qt4
-
+LRELEASE = /usr/lib/qt5/bin/lrelease
 
 # translation
 SOURCES = \
@@ -39,10 +39,12 @@ SOURCES = \
 	export_plugin_dialog.py \
 	gml_exporter.py \
 	gml_importer.py \
+	gml_validator.py \
 	gpkg_loader.py \
 	import_export_plugin.py \
 	import_plugin_dialog.py \
 	load_plugin_dialog.py \
+	validate_plugin_dialog.py \
 	xsd_structure.py
 
 PLUGINNAME = eing_gml_import_export
@@ -52,16 +54,19 @@ PY_FILES = \
 	export_plugin_dialog.py \
 	gml_exporter.py \
 	gml_importer.py \
+	gml_validator.py \
 	gpkg_loader.py \
 	import_export_plugin.py \
 	import_plugin_dialog.py \
 	load_plugin_dialog.py \
+	validate_plugin_dialog.py \
 	xsd_structure.py
 
 UI_FILES = \
 	export_plugin_dialog_base.ui \
 	import_plugin_dialog_base.ui \
-	load_plugin_dialog_base.ui
+	load_plugin_dialog_base.ui \
+	validate_plugin_dialog_base.ui
 
 EXTRAS = metadata.txt icon.ico
 

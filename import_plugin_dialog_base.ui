@@ -26,10 +26,10 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
+     <item row="1" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Adatszolgáltatás GML:</string>
+        <string>Target GeoPackage:</string>
        </property>
       </widget>
      </item>
@@ -46,20 +46,20 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Cél GeoPackage:</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
       <widget class="QCheckBox" name="load_check">
        <property name="text">
-        <string>Táblák betöltése</string>
+        <string>Load layers</string>
        </property>
        <property name="checked">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>GML to import::</string>
        </property>
       </widget>
      </item>

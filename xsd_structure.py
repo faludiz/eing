@@ -31,7 +31,7 @@ class XsdStructure:
         self.xsd_version = xsd_version
         self.supported_version = None
         self.layer_definitions = None
-        self.plugin_dir = os.path.dirname(os.path.abspath(__file__))
+        self.plugin_dir = os.path.dirname(__file__)
 
         self.eov_spatial_reference = osr.SpatialReference()
         self.eov_spatial_reference.ImportFromEPSG(23700)
@@ -66,14 +66,14 @@ class XsdStructure:
         xsd_path = os.path.join(self.plugin_dir, "xsds", name)
         if not os.path.exists(xsd_path):
             raise Exception(f"No XSD found for {self.xsd_version} version ({fname})")
-        QgsMessageLog.logMessage("Felhasznált E-Ing XSD struktúra: " +
+        QgsMessageLog.logMessage("Used E-Ing XSD structure: " +
                                  xsd_path, XsdStructure.MESSAGE_TAG,
                                  level = Qgis.Info)
 
         xsd_root = ET.parse(xsd_path).getroot()
 
         self.supported_version = xsd_root.attrib['version']
-        QgsMessageLog.logMessage("Támogatott E-Ing XSD verzió: " + self.supported_version, XsdStructure.MESSAGE_TAG, level = Qgis.Info)
+        QgsMessageLog.logMessage("Supported E-Ing XSD version: " + self.supported_version, XsdStructure.MESSAGE_TAG, level = Qgis.Info)
 
         # <element> node-ok, amiknek a [name] attribútuma a réteg neve, és <complexType> node-okra hivatkoznak
         elements = xsd_root.findall("./xmlns:element", XsdStructure.DEFAULT_NAMESPACE)

@@ -3,17 +3,19 @@
 """
 import os.path
 from osgeo import ogr
-from qgis.core import QgsMessageLog, QgsProject
+from qgis.core import Qgis, QgsMessageLog, QgsProject
 
 class GpkgLoader():
     """ loader class for GeoPackage
         :param iface: QGIS iface object
     """
-    def __init__(self, iface):
+    def __init__(self, iface, tr):
         """ initialize """
         self.iface = iface
+        self.tr = tr
+        self.plugin_dir = os.path.dirname(__file__)
 
-    def load_layers(self, gpkg_path, plugin_dir, layer_list=None):
+    def load_layers(self, gpkg_path, layer_list=None):
         """ Load layers from GeoPackage
 
             :param gpkg_path: path to GeoPackage file
@@ -33,7 +35,8 @@ class GpkgLoader():
                                                layer, 'ogr')
             if vlayer:
                 # try to load qml style
-                qml_path = os.path.join(plugin_dir, "styles", layer + ".qml")
+                qml_path = os.path.join(self.plugin_dir, "styles",
+                                        layer + ".qml")
                 if os.path.exists(qml_path):
                     vlayer.loadNamedStyle(qml_path)
                 # set visibility off on empty layers
@@ -42,4 +45,9 @@ class GpkgLoader():
                     if node:
                         node.setItemVisibilityChecked(False)
             else:
-                QgsMessageLog.logMessage("Cannot load layer: " + layer)
+                QgsMessageLog.logMessage(self.tr("Cannot load layer: ") + layer)
+                self.iface.messageBar().pushMessage("GeoPackage",
+                                                    self.tr("Cannot load layer: ")
+                                                    + layer,
+                                                    level = Qgis.Warning,
+                                                    duration = 5)
