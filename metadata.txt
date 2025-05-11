@@ -6,7 +6,7 @@
 name=E-ING GML import/export
 qgisMinimumVersion=3.0
 description=
-version=1.0.0
+version=1.0.1
 author=Tigra Kft. & Zoltan Siki
 
 about=Plugin to import and export Hungarian E-ING GML data to/from GeoPackage
