@@ -40,6 +40,11 @@ class GpkgLoader():
                                         layer + ".qml")
                 if os.path.exists(qml_path):
                     vlayer.loadNamedStyle(qml_path)
+                else:
+                    qml_path = os.path.join(self.plugin_dir, "styles",
+                                            "default.qml")
+                    if os.path.exists(qml_path):
+                        vlayer.loadNamedStyle(qml_path)
                 # set visibility off on empty layers
                 if vlayer.featureCount() == 0:
                     node = QgsProject.instance().layerTreeRoot().findLayer(vlayer.id())

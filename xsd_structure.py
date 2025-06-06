@@ -65,7 +65,7 @@ class XsdStructure:
         name = f"eing_{self.xsd_version}.xsd"
         xsd_path = os.path.join(self.plugin_dir, "xsds", name)
         if not os.path.exists(xsd_path):
-            raise Exception(f"No XSD found for {self.xsd_version} version ({fname})")
+            raise Exception(f"No XSD found for {self.xsd_version} version ({name})")
         QgsMessageLog.logMessage("Used E-Ing XSD structure: " +
                                  xsd_path, XsdStructure.MESSAGE_TAG,
                                  level = Qgis.Info)
