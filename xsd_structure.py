@@ -8,11 +8,11 @@ from osgeo import ogr, osr
 class XsdField:
 
     def __init__(self, name, typ):
-        self.name = name # mező neve
-        self.type = typ # xsd típus, pl. "eing:long-or-empty"
+        self.name = name # field name
+        self.type = typ # xsd type, e.g. "eing:long-or-empty"
 
 class XsdStructure:
-    """A eing_version.xsd alapján a GeoPackage struktúráját építi fel."""
+    """Build Geopackage structure from eing_version.xsd"""
 
     MESSAGE_TAG = 'GML import'
 
@@ -45,7 +45,7 @@ class XsdStructure:
 
         fields = []
 
-        # ha a közös mezőket is hozzá kell venni a mezőkhöz
+        # if common fields should be added to fields
         if 'base' in extension.attrib and extension.attrib['base'] == 'eing:CommonAttributesType':
             fields = common_fields.copy()
 

@@ -15,7 +15,8 @@ import os.path
 
 from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtWidgets import QAction, QMessageBox
+from qgis.core import QgsProject
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -172,6 +173,12 @@ class GmlImportExport:
             self.first_start_import = False
             self.dlg_import = ImportDialog(self.tr)
 
+        # is actual project empty?
+        if len(QgsProject.instance().mapLayers().values()) > 0:
+            resp = QMessageBox.question(None, self.tr("Warning"), 
+                                        self.tr("Project is not empty! Do you want to add layers from GML?"))
+            if resp == QMessageBox.No:
+                return
         # show the dialog
         self.dlg_import.show()
         # Run the dialog event loop
@@ -196,6 +203,15 @@ class GmlImportExport:
         if self.first_start_export:
             self.first_start_export = False
             self.dlg_export = ExportDialog(self.tr)
+
+        # fill geopackage source from opened project using first layer from a gepackage
+        self.dlg_export.export_gpkg_path.setFilePath('')
+        for lay in QgsProject.instance().mapLayers().values():
+            src = lay.source()
+            i = src.find(".gpkg|")
+            if i > 0:
+                self.dlg_export.export_gpkg_path.setFilePath(src[:i+5])
+                break
 
         # show the dialog
         self.dlg_export.show()

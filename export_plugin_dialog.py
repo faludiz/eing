@@ -23,18 +23,6 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 
 class ExportDialog(QtWidgets.QDialog, FORM_CLASS):
 
-    def export_gpkg_path_changed(self):
-        self.export_gml_path.setFilePath(self.export_gpkg_path.filePath().replace(".gpkg", ".gml"))
-
-    def accept_export(self):
-        if os.path.exists(self.export_gpkg_path.filePath()):
-            self.accept()
-        else:
-            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          self.tr("Missing file"),
-                                          self.tr("GeoPackage to be exported not found"))
-            alert.exec_()
-
     def __init__(self, tr, parent=None):
         """Constructor."""
         super(ExportDialog, self).__init__(parent)
@@ -51,3 +39,16 @@ class ExportDialog(QtWidgets.QDialog, FORM_CLASS):
         # default accept function leválasztása, és saját accept (path validációval) rácsatlakoztatása
         self.button_box.accepted.disconnect(self.accept)
         self.button_box.accepted.connect(self.accept_export)
+
+    def export_gpkg_path_changed(self):
+        """ handler to fill gml path based on geopackage path """
+        self.export_gml_path.setFilePath(self.export_gpkg_path.filePath().replace(".gpkg", ".gml"))
+
+    def accept_export(self):
+        if os.path.exists(self.export_gpkg_path.filePath()):
+            self.accept()
+        else:
+            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
+                                          self.tr("Missing file"),
+                                          self.tr("GeoPackage to be exported not found"))
+            alert.exec_()

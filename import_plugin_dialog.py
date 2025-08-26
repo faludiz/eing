@@ -14,14 +14,14 @@
 import os
 
 from qgis.PyQt import uic
-from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtWidgets import QDialog, QMessageBox
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'import_plugin_dialog_base.ui'))
 
 
-class ImportDialog(QtWidgets.QDialog, FORM_CLASS):
+class ImportDialog(QDialog, FORM_CLASS):
     """ Dialog to specify input gml file and output GeoPackage """
     def import_gml_path_changed(self):
         """ update gpkg field """
@@ -31,23 +31,18 @@ class ImportDialog(QtWidgets.QDialog, FORM_CLASS):
         """ Custom accept method to check fields """
         if len(self.import_gpkg_path.filePath()) == 0 or \
            len(self.import_gml_path.filePath()) == 0:
-            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          self.tr("Empty field"),
-                                          self.tr("Fill both fields"))
-            alert.exec_()
+            QMessageBox.critical(None, self.tr("Empty field"),
+                                 self.tr("Fill both fields"))
             return
         if not os.path.exists(self.import_gml_path.filePath()):
-            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          self.tr("Misisng file"),
-                                          self.tr("GML file does not exist"))
-            alert.exec_()
+            QMessageBox.critical(None, self.tr("Misisng file"),
+                                 self.tr("GML file does not exist"))
             return
         if os.path.exists(self.import_gpkg_path.filePath()):
-            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          self.tr("Existing file"),
-                                          self.tr("GeoPackage already exists"))
-            alert.exec_()
-            return
+            ans = QMessageBox.question(None, self.tr("Existing file"),
+                                 self.tr("GeoPackage already exists, overwrite?"))
+            if ans == QMessageBox.No:
+                return
         self.accept()
 
     def __init__(self, tr, parent=None):

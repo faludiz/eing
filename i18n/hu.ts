@@ -4,105 +4,14 @@
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="../export_plugin_dialog.py" line="33"/>
+        <location filename="../export_plugin_dialog.py" line="51"/>
         <source>Missing file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../export_plugin_dialog.py" line="33"/>
+        <location filename="../export_plugin_dialog.py" line="51"/>
         <source>GeoPackage to be exported not found</source>
         <translation>Exportálandó GeoPackage nem található</translation>
-    </message>
-</context>
-<context>
-    <name>GMLExportDialogBase</name>
-    <message>
-        <location filename="../export_plugin_dialog_base.ui" line="14"/>
-        <source>GML export</source>
-        <translation>GML export</translation>
-    </message>
-    <message>
-        <location filename="../export_plugin_dialog_base.ui" line="22"/>
-        <source>GeoPackage fájl kiválasztása</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../export_plugin_dialog_base.ui" line="39"/>
-        <source>Exportálás</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../export_plugin_dialog_base.ui" line="32"/>
-        <source>GeoPackage to export:</source>
-        <translation>Exportálandó GeoPackage:</translation>
-    </message>
-    <message>
-        <location filename="../export_plugin_dialog_base.ui" line="52"/>
-        <source>Target GML:</source>
-        <translation>Létrehozadó GML:</translation>
-    </message>
-</context>
-<context>
-    <name>GMLImportDialogBase</name>
-    <message>
-        <location filename="../import_plugin_dialog_base.ui" line="14"/>
-        <source>GML import</source>
-        <translation>GML import</translation>
-    </message>
-    <message>
-        <location filename="../import_plugin_dialog_base.ui" line="22"/>
-        <source>GML fájl kiválasztása</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../import_plugin_dialog_base.ui" line="39"/>
-        <source>Importálás</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../load_plugin_dialog_base.ui" line="14"/>
-        <source>GeoPackage loader</source>
-        <translation>GeoPackage betöltő</translation>
-    </message>
-    <message>
-        <location filename="../load_plugin_dialog_base.ui" line="22"/>
-        <source>GeoPackage:</source>
-        <translation>GeoPackage:</translation>
-    </message>
-    <message>
-        <location filename="../load_plugin_dialog_base.ui" line="29"/>
-        <source>Geopackage megnyitás</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../validate_plugin_dialog_base.ui" line="14"/>
-        <source>GML validation</source>
-        <translation>GML ellenőrzés</translation>
-    </message>
-    <message>
-        <location filename="../validate_plugin_dialog_base.ui" line="22"/>
-        <source>GML:</source>
-        <translation>GML:</translation>
-    </message>
-    <message>
-        <location filename="../validate_plugin_dialog_base.ui" line="29"/>
-        <source>GML megnyitás</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../import_plugin_dialog_base.ui" line="32"/>
-        <source>Target GeoPackage:</source>
-        <translation>Cél GeoPackage:</translation>
-    </message>
-    <message>
-        <location filename="../import_plugin_dialog_base.ui" line="52"/>
-        <source>Load layers</source>
-        <translation>Rétegek betöltése</translation>
-    </message>
-    <message>
-        <location filename="../import_plugin_dialog_base.ui" line="62"/>
-        <source>GML to import::</source>
-        <translation>Importálandó GML:</translation>
     </message>
 </context>
 <context>
@@ -159,6 +68,16 @@
         <location filename="../import_export_plugin.py" line="152"/>
         <source>Validate</source>
         <translation>Ellenőrzés</translation>
+    </message>
+    <message>
+        <location filename="../import_export_plugin.py" line="178"/>
+        <source>Warning</source>
+        <translation>Figyelmeztetés</translation>
+    </message>
+    <message>
+        <location filename="../import_export_plugin.py" line="178"/>
+        <source>Project is not empty! Do you want to add layers from GML?</source>
+        <translation>A projekt nem üres. Hozzáadja a rétegeket a GML fájlból?</translation>
     </message>
 </context>
 <context>
@@ -250,7 +169,7 @@
 <context>
     <name>GpkgLoader</name>
     <message>
-        <location filename="../gpkg_loader.py" line="49"/>
+        <location filename="../gpkg_loader.py" line="54"/>
         <source>Cannot load layer: </source>
         <translation>Nem lehet betölteni a réteget:</translation>
     </message>
@@ -268,24 +187,24 @@
         <translation>Töltse ki mindkét mezőt</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="40"/>
+        <location filename="../import_plugin_dialog.py" line="38"/>
         <source>Misisng file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="40"/>
+        <location filename="../import_plugin_dialog.py" line="38"/>
         <source>GML file does not exist</source>
         <translation>GML fájl nem létezik</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="46"/>
+        <location filename="../import_plugin_dialog.py" line="42"/>
         <source>Existing file</source>
         <translation>Létező fájl</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="46"/>
-        <source>GeoPackage already exists</source>
-        <translation>GeoPackage már létezik</translation>
+        <location filename="../import_plugin_dialog.py" line="42"/>
+        <source>GeoPackage already exists, overwrite?</source>
+        <translation>Geopackage fájl már létezik, felülírja?</translation>
     </message>
 </context>
 <context>
