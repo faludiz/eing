@@ -23,6 +23,19 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 
 class ImportDialog(QDialog, FORM_CLASS):
     """ Dialog to specify input gml file and output GeoPackage """
+
+    def __init__(self, tr, parent=None):
+        """Constructor."""
+        super(ImportDialog, self).__init__(parent)
+        self.tr = tr
+        self.setupUi(self)
+
+        self.import_gml_path.fileChanged.connect(self.import_gml_path_changed)
+
+        # Connect custum accept method
+        self.button_box.accepted.disconnect(self.accept)
+        self.button_box.accepted.connect(self.accept_import)
+
     def import_gml_path_changed(self):
         """ update gpkg field """
         self.import_gpkg_path.setFilePath(self.import_gml_path.filePath().replace(".gml", ".gpkg"))
@@ -44,20 +57,3 @@ class ImportDialog(QDialog, FORM_CLASS):
             if ans == QMessageBox.No:
                 return
         self.accept()
-
-    def __init__(self, tr, parent=None):
-        """Constructor."""
-        super(ImportDialog, self).__init__(parent)
-        self.tr = tr
-        # Set up the user interface from Designer through FORM_CLASS.
-        # After self.setupUi() you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
-        self.setupUi(self)
-
-        self.import_gml_path.fileChanged.connect(self.import_gml_path_changed)
-
-        # default accept function leválasztása, és saját accept (path validációval) rácsatlakoztatása
-        self.button_box.accepted.disconnect(self.accept)
-        self.button_box.accepted.connect(self.accept_import)

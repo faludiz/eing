@@ -4,14 +4,34 @@
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="../export_plugin_dialog.py" line="51"/>
+        <location filename="../export_plugin_dialog.py" line="58"/>
         <source>Missing file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../export_plugin_dialog.py" line="51"/>
+        <location filename="../export_plugin_dialog.py" line="58"/>
         <source>GeoPackage to be exported not found</source>
         <translation>Exportálandó GeoPackage nem található</translation>
+    </message>
+    <message>
+        <location filename="../export_plugin_dialog.py" line="51"/>
+        <source>Empty field</source>
+        <translation>Üres mező</translation>
+    </message>
+    <message>
+        <location filename="../export_plugin_dialog.py" line="51"/>
+        <source>Fill both fields</source>
+        <translation>Töltse ki mindkét mezőt</translation>
+    </message>
+    <message>
+        <location filename="../export_plugin_dialog.py" line="61"/>
+        <source>Existing file</source>
+        <translation>Létező fájl</translation>
+    </message>
+    <message>
+        <location filename="../export_plugin_dialog.py" line="61"/>
+        <source>GML file already exists, overwrite?</source>
+        <translation>GML fájl már létezik, felülírja?</translation>
     </message>
 </context>
 <context>
@@ -177,32 +197,32 @@
 <context>
     <name>ImportDialog</name>
     <message>
-        <location filename="../import_plugin_dialog.py" line="34"/>
+        <location filename="../import_plugin_dialog.py" line="47"/>
         <source>Empty field</source>
         <translation>Üres mező</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="34"/>
+        <location filename="../import_plugin_dialog.py" line="47"/>
         <source>Fill both fields</source>
         <translation>Töltse ki mindkét mezőt</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="38"/>
+        <location filename="../import_plugin_dialog.py" line="51"/>
         <source>Misisng file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="38"/>
+        <location filename="../import_plugin_dialog.py" line="51"/>
         <source>GML file does not exist</source>
         <translation>GML fájl nem létezik</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="42"/>
+        <location filename="../import_plugin_dialog.py" line="55"/>
         <source>Existing file</source>
         <translation>Létező fájl</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="42"/>
+        <location filename="../import_plugin_dialog.py" line="55"/>
         <source>GeoPackage already exists, overwrite?</source>
         <translation>Geopackage fájl már létezik, felülírja?</translation>
     </message>

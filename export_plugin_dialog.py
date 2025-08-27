@@ -14,14 +14,14 @@
 import os
 
 from qgis.PyQt import uic
-from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtWidgets import QDialog, QMessageBox
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'export_plugin_dialog_base.ui'))
 
 
-class ExportDialog(QtWidgets.QDialog, FORM_CLASS):
+class ExportDialog(QDialog, FORM_CLASS):
 
     def __init__(self, tr, parent=None):
         """Constructor."""
@@ -45,10 +45,20 @@ class ExportDialog(QtWidgets.QDialog, FORM_CLASS):
         self.export_gml_path.setFilePath(self.export_gpkg_path.filePath().replace(".gpkg", ".gml"))
 
     def accept_export(self):
-        if os.path.exists(self.export_gpkg_path.filePath()):
-            self.accept()
-        else:
-            alert = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning,
-                                          self.tr("Missing file"),
-                                          self.tr("GeoPackage to be exported not found"))
-            alert.exec_()
+        """ Custom accept method to check fields """
+        if len(self.export_gpkg_path.filePath()) == 0 or \
+           len(self.export_gml_path.filePath()) == 0:
+            QMessageBox.critical(None, self.tr("Empty field"),
+                                 self.tr("Fill both fields"))
+            return
+
+        if not os.path.exists(self.export_gpkg_path.filePath()):
+            QMessageBox.critical(None, self.tr("Missing file"),
+                                           self.tr("GeoPackage to be exported not found"))
+            return
+        if os.path.exists(self.export_gml_path.filePath()):
+            ans = QMessageBox.question(None, self.tr("Existing file"),
+                                 self.tr("GML file already exists, overwrite?"))
+            if ans == QMessageBox.No:
+                return
+        self.accept()
