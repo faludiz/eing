@@ -6,8 +6,6 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree
 from qgis.PyQt.QtWidgets import QMessageBox
 from osgeo import ogr
 
-#import xml.etree.ElementTree as ET
-
 class GmlExporter:
     """GeoPackage --> GML exporter"""
 
@@ -27,27 +25,9 @@ class GmlExporter:
 
     def format_float(self, number):
         """ remove trailing zeros """
-        return str('{0:.3f}'.format(number)).rstrip('0').rstrip('.')
-
-    def calculate_data_source_extent(self, gpkg_data_source):
-        """ Get extent of all features on all layers"""
-        x_mins, x_maxs, y_mins, y_maxs = [], [], [], []
-
-        # TODO use only E-Ing tables
-        for layer_index in range(gpkg_data_source.GetLayerCount()):
-            gpkg_layer = gpkg_data_source.GetLayerByIndex(layer_index)
-
-            # a gpkg_layer.GetExtent() truncate-eli az extentet, ezért egyesével kell rajta végigiterálni
-            # TODO avoid list compare to actual min/max
-            for feature in gpkg_layer:
-                x_min, x_max, y_min, y_max = feature.GetGeometryRef().GetEnvelope()
-
-                x_mins.append(x_min)
-                x_maxs.append(x_max)
-                y_mins.append(y_min)
-                y_maxs.append(y_max)
-
-        return [min(x_mins), max(x_maxs), min(y_mins), max(y_maxs)]
+        wstr = f"{number:.3f}"
+        return wstr.rstrip('0').rstrip('.')
+#        return str('{0:.3f}'.format(number)).rstrip('0').rstrip('.')
 
     def add_geometry_element(self, layer_element, geom):
         """ Add a feature to GML structure """
@@ -57,15 +37,20 @@ class GmlExporter:
         if geom_name == 'POINT':
             point_element = SubElement(geom_element, 'gml:Point', {'srsDimension': '2', 'srsName': 'urn:x-ogc:def:crs:EPSG:23700' })
             gml_pos_element = SubElement(point_element, 'gml:pos')
-            gml_pos_element.text = self.format_float(geom.GetX()) + ' ' + self.format_float(geom.GetY())
-
+            gml_pos_element.text = self.format_float(geom.GetX()) + ' ' + \
+                                   self.format_float(geom.GetY())
         elif geom_name == 'POLYGON':
-            polygon_element = SubElement(geom_element, 'gml:Polygon', {'srsDimension': '2', 'srsName': 'urn:x-ogc:def:crs:EPSG:23700' })
+            polygon_element = SubElement(geom_element, 'gml:Polygon',
+                                         {'srsDimension': '2',
+                                          'srsName': 'urn:x-ogc:def:crs:EPSG:23700' })
 
             for ring_index in range(geom.GetGeometryCount()):
-                gml_exterior_element = SubElement(polygon_element, 'gml:exterior' if ring_index == 0 else 'gml:interior')
-                gml_linear_ring_element = SubElement(gml_exterior_element, 'gml:LinearRing', {'srsDimension': '2' })
-                gml_pos_list_element = SubElement(gml_linear_ring_element, 'gml:posList')
+                gml_exterior_element = SubElement(polygon_element,
+                                                  'gml:exterior' if ring_index == 0 else 'gml:interior')
+                gml_linear_ring_element = SubElement(gml_exterior_element,
+                                                     'gml:LinearRing', {'srsDimension': '2' })
+                gml_pos_list_element = SubElement(gml_linear_ring_element,
+                                                  'gml:posList')
                 ring = geom.GetGeometryRef(ring_index)
 
                 point_arr = []

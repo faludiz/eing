@@ -48,7 +48,7 @@ class GmlImportExport:
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
         locale_path = os.path.join(self.plugin_dir, 'i18n',
-                                   '{}.qm'.format(locale))
+                                   f'{locale}.qm')
         if os.path.exists(locale_path):
             self.translator = QTranslator()
             self.translator.load(locale_path)
@@ -175,7 +175,7 @@ class GmlImportExport:
 
         # is actual project empty?
         if len(QgsProject.instance().mapLayers().values()) > 0:
-            resp = QMessageBox.question(None, self.tr("Warning"), 
+            resp = QMessageBox.question(None, self.tr("Warning"),
                                         self.tr("Project is not empty! Do you want to add layers from GML?"))
             if resp == QMessageBox.No:
                 return

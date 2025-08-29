@@ -59,4 +59,4 @@ class GmlValidator():
                               self.tr("Error in GML: ") + str(xmlschema.error_log.last_error))
             return
         QMessageBox.information(None, self.tr("INFO"),
-                                gml_path + self.tr(" is valid to : ") + name) 
+                                gml_path + self.tr(" is valid to : ") + name)
