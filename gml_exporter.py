@@ -75,7 +75,7 @@ class GmlExporter:
             raise Exception(self.tr("Unsupported geometry type: ") + geom_name)
 
     def add_field_elements(self, layer_element, gml_feature, gml_layer_def, new_fid):
-        """Feature attribútumok hozzáadása node-onként."""
+        """ Adding feature attributes as nodes """
         for i in range(gml_layer_def.GetFieldCount()):
             field_name = gml_layer_def.GetFieldDefn(i).GetName()
             field_val = gml_feature.GetField(field_name)
@@ -85,7 +85,7 @@ class GmlExporter:
 
             field_element = SubElement(layer_element, 'eing:' + field_name)
 
-            # floatok esetén a ".0" rész levágása, ha lenne ilyen
+            # remove ".0" part for floats
             if isinstance(field_val, float):
                 field_element.text = self.format_float(field_val)
 
@@ -100,7 +100,7 @@ class GmlExporter:
         meta_data_element.text = meta_data_value
 
     def add_metadata_element(self, root, gpkg_data_source):
-        """metaDataProperty node létrehozása, valamint feltöltése a GeoPackage metaadataival."""
+        """ create metaDataProperty node and fill it 0from GeoPackage meta data """
         meta_data_list_element = SubElement(SubElement(SubElement(root, 'gml:metaDataProperty'), 'gml:GenericMetaData'), 'MetaDataList')
 
         self.add_metadata_list_element(gpkg_data_source, 'gmlID', meta_data_list_element)
@@ -122,8 +122,8 @@ class GmlExporter:
     def get_sorted_layer_indexes(self, gpkg_data_source):
         """
             returns the layer list in the order neccesary in GML
-        :param gpkg_data_source: GeoPackage dource
-        :return: Egy rendezett listával tér vissza, aminek elemei a data source rétegeinek indexei.
+            :param gpkg_data_source: GeoPackage source
+            :return: sorted list of layer indices from data source
         """
         indexes = []
 

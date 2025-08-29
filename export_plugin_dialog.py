@@ -36,7 +36,7 @@ class ExportDialog(QDialog, FORM_CLASS):
 
         self.export_gpkg_path.fileChanged.connect(self.export_gpkg_path_changed)
 
-        # default accept function leválasztása, és saját accept (path validációval) rácsatlakoztatása
+        # disconnet default accept function & connect custom one
         self.button_box.accepted.disconnect(self.accept)
         self.button_box.accepted.connect(self.accept_export)
 

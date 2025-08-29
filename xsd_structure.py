@@ -18,7 +18,7 @@ class XsdStructure:
 
     DEFAULT_NAMESPACE = { "xmlns": "http://www.w3.org/2001/XMLSchema" }
 
-    def __init__(self, iface, xsd_version):
+    def __init__(self, iface, tr, xsd_version):
         """Constructor.
 
         :param iface: An interface instance that will be passed to this class
@@ -28,6 +28,7 @@ class XsdStructure:
         """
         # Save reference to the QGIS interface
         self.iface = iface
+        self.tr = tr
         self.xsd_version = xsd_version
         self.supported_version = None
         self.layer_definitions = None
@@ -37,7 +38,7 @@ class XsdStructure:
         self.eov_spatial_reference.ImportFromEPSG(23700)
 
     def get_layer_element_fields(self, layer_element, common_fields):
-        """Feldolgozza a réteg node-ban található mezőket."""
+        """ process fields in layer nodes """
         extension = layer_element.find("./xmlns:complexContent/xmlns:extension",
                                        XsdStructure.DEFAULT_NAMESPACE)
         field_elements = extension.findall("./xmlns:sequence/xmlns:element",
@@ -61,24 +62,26 @@ class XsdStructure:
         return None
 
     def build_structure(self):
-        """A eing_version.xsd alapján felépít egy struktúrát, ami alapján létre lehet hozni a GeoPackage rétegeket."""
+        """ build a structure from eing_{version}.xsd to create GeoPackage layers """
         name = f"eing_{self.xsd_version}.xsd"
         xsd_path = os.path.join(self.plugin_dir, "xsds", name)
         if not os.path.exists(xsd_path):
             raise Exception(f"No XSD found for {self.xsd_version} version ({name})")
-        QgsMessageLog.logMessage("Used E-Ing XSD structure: " +
+        QgsMessageLog.logMessage(self.tr("Used E-Ing XSD structure: ") +
                                  xsd_path, XsdStructure.MESSAGE_TAG,
                                  level = Qgis.Info)
 
         xsd_root = ET.parse(xsd_path).getroot()
 
         self.supported_version = xsd_root.attrib['version']
-        QgsMessageLog.logMessage("Supported E-Ing XSD version: " + self.supported_version, XsdStructure.MESSAGE_TAG, level = Qgis.Info)
+        QgsMessageLog.logMessage(self.tr("Supported E-Ing XSD version: ") +
+                                 self.supported_version,
+                                 XsdStructure.MESSAGE_TAG, level = Qgis.Info)
 
-        # <element> node-ok, amiknek a [name] attribútuma a réteg neve, és <complexType> node-okra hivatkoznak
+        # <element> nodes having [name] attribute (layer name) and refer to <complexType> nodes
         elements = xsd_root.findall("./xmlns:element", XsdStructure.DEFAULT_NAMESPACE)
 
-        # <complexType> node-ok, amikben a rétegek fieldjei (+ a közös mezők leírásai) vannak
+        # <complexType> nodes containing field of layers (+common fields)
         complex_types = xsd_root.findall("./xmlns:complexType", XsdStructure.DEFAULT_NAMESPACE)
 
         common_attributes_element = self.find_complex_type_by_name(complex_types, "CommonAttributesType")
@@ -128,7 +131,7 @@ class XsdStructure:
         raise Exception("Nem támogatott XSD mező típus: " + xsd_field_type)
 
     def create_gpkg_layer(self, gpkg_data_source, layer_name):
-        """A feldolgozott xsd alapján előállítja az adott réteghez tartozó GeoPackage réteget."""
+        """ Create GeoPackage layer from processed XSD """
         xsd_structure = self.layer_definitions[layer_name]
 
         for xsd_field in xsd_structure:

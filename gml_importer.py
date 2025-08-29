@@ -64,7 +64,7 @@ class GmlImporter:
         for key, value in self.metadata.items():
             converted_gpkg_data_source.SetMetadataItem(key, value)
 
-        xsd_structure = XsdStructure(self.iface, self.xsd_version)
+        xsd_structure = XsdStructure(self.iface, self.tr, self.xsd_version)
         xsd_structure.build_structure()
 
         try:
@@ -75,7 +75,8 @@ class GmlImporter:
 
                 if gml_layer is not None:
                     gpkg_feature_def = copied_gpkg_layer.GetLayerDefn()
-                    gml_layer_def = gml_layer.GetLayerDefn() # a GML fájlból hiányozhatnak mezők, így annak egy másik struktúrája van
+                    # there may be missing fields in GML
+                    gml_layer_def = gml_layer.GetLayerDefn()
 
                     # copy features of layer from GML to gpkg
                     for gml_feature in gml_layer:
@@ -99,7 +100,7 @@ class GmlImporter:
                                          level = Qgis.Info)
                 del copied_gpkg_layer
 
-            del converted_gpkg_data_source # referencia megszüntetése a fájl mentéséhez
+            del converted_gpkg_data_source # remove reference for saving file
 
             self.iface.messageBar().pushMessage(self.tr("Succesful GML import"),
                                                 gml_path + self.tr(" imported"),

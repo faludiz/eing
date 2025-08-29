@@ -4,12 +4,12 @@
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="../export_plugin_dialog.py" line="58"/>
+        <location filename="../export_plugin_dialog.py" line="56"/>
         <source>Missing file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../export_plugin_dialog.py" line="58"/>
+        <location filename="../export_plugin_dialog.py" line="56"/>
         <source>GeoPackage to be exported not found</source>
         <translation>Exportálandó GeoPackage nem található</translation>
     </message>
@@ -24,12 +24,12 @@
         <translation>Töltse ki mindkét mezőt</translation>
     </message>
     <message>
-        <location filename="../export_plugin_dialog.py" line="61"/>
+        <location filename="../export_plugin_dialog.py" line="60"/>
         <source>Existing file</source>
         <translation>Létező fájl</translation>
     </message>
     <message>
-        <location filename="../export_plugin_dialog.py" line="61"/>
+        <location filename="../export_plugin_dialog.py" line="60"/>
         <source>GML file already exists, overwrite?</source>
         <translation>GML fájl már létezik, felülírja?</translation>
     </message>
@@ -37,27 +37,27 @@
 <context>
     <name>GmlExporter</name>
     <message>
-        <location filename="../gml_exporter.py" line="90"/>
+        <location filename="../gml_exporter.py" line="75"/>
         <source>Unsupported geometry type: </source>
         <translation>Nem kezelt geometria típus</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="167"/>
+        <location filename="../gml_exporter.py" line="152"/>
         <source>CRITICAL error</source>
         <translation>KRITIKUS hiba</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="167"/>
+        <location filename="../gml_exporter.py" line="152"/>
         <source>Cannot open GeoPackage: </source>
         <translation>Nem lehet megnyitni a GeoPackage-t</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="203"/>
+        <location filename="../gml_exporter.py" line="188"/>
         <source>INFO</source>
         <translation>INFO</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="203"/>
+        <location filename="../gml_exporter.py" line="188"/>
         <source>Succesful GML export</source>
         <translation>Sikeres GML export</translation>
     </message>
@@ -113,27 +113,27 @@
         <translation>XSD verzió:</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="96"/>
+        <location filename="../gml_importer.py" line="97"/>
         <source> layer </source>
         <translation>réteg</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="104"/>
+        <location filename="../gml_importer.py" line="105"/>
         <source>Succesful GML import</source>
         <translation>Sikeres GML import</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="104"/>
+        <location filename="../gml_importer.py" line="105"/>
         <source> imported</source>
         <translation>importálva</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="114"/>
+        <location filename="../gml_importer.py" line="115"/>
         <source>ERROR</source>
         <translation>HIBA</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="114"/>
+        <location filename="../gml_importer.py" line="115"/>
         <source> open/read error </source>
         <translation>Nyitási/olvasási hiba</translation>
     </message>
@@ -246,6 +246,19 @@
         <location filename="../validate_plugin_dialog.py" line="31"/>
         <source>Empty field</source>
         <translation>Üres mező</translation>
+    </message>
+</context>
+<context>
+    <name>XsdStructure</name>
+    <message>
+        <location filename="../xsd_structure.py" line="70"/>
+        <source>Used E-Ing XSD structure: </source>
+        <translation>Használt E-Ing struktúra</translation>
+    </message>
+    <message>
+        <location filename="../xsd_structure.py" line="77"/>
+        <source>Supported E-Ing XSD version: </source>
+        <translation>Támogatott E-Ing XSD verzió</translation>
     </message>
 </context>
 </TS>
