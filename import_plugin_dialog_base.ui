@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GMLImportDialogBase</class>
- <widget class="QDialog" name="GMLImportDialogBase">
+ <class>ImportDialog</class>
+ <widget class="QDialog" name="ImportDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
      <item row="0" column="1">
       <widget class="QgsFileWidget" name="import_gml_path">
        <property name="dialogTitle">
-        <string>GML fájl kiválasztása</string>
+        <string>GML file selection</string>
        </property>
        <property name="filter">
         <string notr="true">*.gml</string>
@@ -36,7 +36,7 @@
      <item row="1" column="1">
       <widget class="QgsFileWidget" name="import_gpkg_path">
        <property name="dialogTitle">
-        <string>Importálás</string>
+        <string>Import</string>
        </property>
        <property name="filter">
         <string notr="true">*.gpkg</string>
@@ -93,7 +93,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>GMLImportDialogBase</receiver>
+   <receiver>ImportDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -109,7 +109,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>GMLImportDialogBase</receiver>
+   <receiver>ImportDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

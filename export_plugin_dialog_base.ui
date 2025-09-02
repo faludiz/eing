@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GMLExportDialogBase</class>
- <widget class="QDialog" name="GMLExportDialogBase">
+ <class>ExportDialog</class>
+ <widget class="QDialog" name="ExportDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
      <item row="0" column="1">
       <widget class="QgsFileWidget" name="export_gpkg_path">
        <property name="dialogTitle">
-        <string>GeoPackage fájl kiválasztása</string>
+        <string>GeoPackage file selection</string>
        </property>
        <property name="filter">
         <string notr="true">*.gpkg</string>
@@ -83,7 +83,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>GMLExportDialogBase</receiver>
+   <receiver>ExportDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -99,7 +99,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>GMLExportDialogBase</receiver>
+   <receiver>ExportDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

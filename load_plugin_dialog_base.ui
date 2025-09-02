@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GMLImportDialogBase</class>
- <widget class="QDialog" name="GMLImportDialogBase">
+ <class>GpkgLoader</class>
+ <widget class="QDialog" name="GpkgLoader">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -26,7 +26,7 @@
      <item row="0" column="1">
       <widget class="QgsFileWidget" name="gpkg_path">
        <property name="dialogTitle">
-        <string>Geopackage megnyitás</string>
+        <string>Open Geopackage</string>
        </property>
        <property name="filter">
         <string notr="true">*.gpkg</string>
@@ -66,7 +66,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>GMLImportDialogBase</receiver>
+   <receiver>GpkgLoader</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -82,7 +82,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>GMLImportDialogBase</receiver>
+   <receiver>GpkgLoader</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

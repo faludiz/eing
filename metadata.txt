@@ -5,11 +5,12 @@
 [general]
 name=E-ING GML import/export
 qgisMinimumVersion=3.0
-description=
+description=Hungarian E-ING export/import
 version=1.0.1
 author=Tigra Kft. & Zoltan Siki
+email=siki1958@gmail.com
 
-about=Plugin to import and export Hungarian E-ING GML data to/from GeoPackage
+about=Plugin to import/export Hungarian E-ING GML data to/from GeoPackage
 
 tracker=https://github.com/zsiki/eing/issues
 repository=https://github.com/zsiki/eing
@@ -28,7 +29,7 @@ homepage=https://github.com/zsiki/eing
 category=Vector
 icon=icon.ico
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
