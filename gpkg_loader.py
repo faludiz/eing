@@ -3,7 +3,7 @@
 """
 import os.path
 from osgeo import ogr
-from qgis.core import QgsProject
+from qgis.core import Qgis, QgsProject
 
 class GpkgLoader():
     """ loader class for GeoPackage
@@ -30,29 +30,33 @@ class GpkgLoader():
             layers = [(l.GetGeomType(), l.GetName()) for l in gpkg_data_source
                       if l.GetName() in layer_list]
         layers.sort(reverse=True)
+        loaded_layers = []
         for _, layer in layers:
             vlayer = self.iface.addVectorLayer(gpkg_path +
                                                "|layername=" + layer,
                                                layer, 'ogr')
             if vlayer:
-                # try to load qml style
-                qml_path = os.path.join(self.plugin_dir, "styles",
-                                        layer + ".qml")
-                if os.path.exists(qml_path):
-                    vlayer.loadNamedStyle(qml_path)
-                else:
-                    qml_path = os.path.join(self.plugin_dir, "styles",
-                                            "default.qml")
-                    if os.path.exists(qml_path):
-                        vlayer.loadNamedStyle(qml_path)
                 # set visibility off on empty layers
                 if vlayer.featureCount() == 0:
                     node = QgsProject.instance().layerTreeRoot().findLayer(vlayer.id())
                     if node:
                         node.setItemVisibilityChecked(False)
+                loaded_layers.append(vlayer)    # save for deffered style loading
             else:
                 self.iface.messageBar().pushMessage("GeoPackage",
                                                     self.tr("Cannot load layer: ")
                                                     + layer,
                                                     level = Qgis.Warning,
                                                     duration = 5)
+        # deffered style loading for complex styles
+        for vlayer in loaded_layers:
+            # try to load qml style
+            qml_path = os.path.join(self.plugin_dir, "styles",
+                                    vlayer.name() + ".qml")
+            if os.path.exists(qml_path):
+                vlayer.loadNamedStyle(qml_path)
+            else:
+                qml_path = os.path.join(self.plugin_dir, "styles",
+                                        "default.qml")
+                if os.path.exists(qml_path):
+                    vlayer.loadNamedStyle(qml_path)
