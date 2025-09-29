@@ -109,8 +109,8 @@
     <name>GmlImportExport</name>
     <message>
         <location filename="../import_export_plugin.py" line="59"/>
-        <source>&amp;GML import / export</source>
-        <translation>&amp;GML import / export</translation>
+        <source>E-ING &amp;GML import / export</source>
+        <translation>E-ING &amp;GML import / export</translation>
     </message>
     <message>
         <location filename="../import_export_plugin.py" line="146"/>

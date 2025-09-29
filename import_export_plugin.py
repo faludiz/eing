@@ -56,7 +56,7 @@ class GmlImportExport:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr('&GML import / export')
+        self.menu = self.tr('E-ING &GML import / export')
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
