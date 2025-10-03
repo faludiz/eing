@@ -38,7 +38,7 @@ class XsdStructure:
         self.eov_spatial_reference.ImportFromEPSG(23700)
 
     def tr(self, message):
-        return QCoreApplication.translate('GmlImporter', message)
+        return QCoreApplication.translate('XsdStructure', message)
 
     def get_layer_element_fields(self, layer_element, common_fields):
         """ process fields in layer nodes """
@@ -116,7 +116,7 @@ class XsdStructure:
         if xsd_field_type in ['string', 'eing:nonEmptyString']:
             return ogr.OFTString
 
-        if xsd_field_type in ['int', 'eing:int-or-empty']:
+        if xsd_field_type in ['int', 'eing:int-or-empty', 'nonNegativeInteger', 'positiveInteger']:
             return ogr.OFTInteger
 
         if xsd_field_type in ['long', 'eing:long-or-empty']:
