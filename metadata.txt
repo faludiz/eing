@@ -6,7 +6,7 @@
 name=E-ING GML import/export
 qgisMinimumVersion=3.0
 description=Hungarian E-ING export/import
-version=1.0.1
+version=1.0.2
 author=Tigra Kft. & Zoltan Siki
 email=siki1958@gmail.com
 
@@ -20,7 +20,7 @@ repository=https://github.com/zsiki/eing
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=support for XSD 2.6, layer styles extended and updated, GUI translation fixed
 
 # Tags are comma separated with spaces allowed
 tags=eing, gml, geopackage
