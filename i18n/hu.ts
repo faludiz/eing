@@ -80,29 +80,34 @@
 <context>
     <name>GmlExporter</name>
     <message>
-        <location filename="../gml_exporter.py" line="75"/>
+        <location filename="../gml_exporter.py" line="79"/>
         <source>Unsupported geometry type: </source>
         <translation>Nem kezelt geometria típus:</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="152"/>
+        <location filename="../gml_exporter.py" line="160"/>
         <source>CRITICAL error</source>
         <translation>Végzetes hiba</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="152"/>
+        <location filename="../gml_exporter.py" line="156"/>
         <source>Cannot open GeoPackage: </source>
         <translation>Nem lehet megnyitni a GeoPackage fájlt:</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="188"/>
+        <location filename="../gml_exporter.py" line="196"/>
         <source>INFO</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="188"/>
+        <location filename="../gml_exporter.py" line="196"/>
         <source>Succesful GML export</source>
         <translation>Sikeres GML export</translation>
+    </message>
+    <message>
+        <location filename="../gml_exporter.py" line="160"/>
+        <source>Cannot write to GML file: </source>
+        <translation>Nem írható a GML fájl: </translation>
     </message>
 </context>
 <context>
@@ -146,85 +151,95 @@
 <context>
     <name>GmlImporter</name>
     <message>
-        <location filename="../gml_importer.py" line="42"/>
+        <location filename="../gml_importer.py" line="50"/>
         <source>GML identifier: </source>
         <translation>GML azonosító:</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="46"/>
+        <location filename="../gml_importer.py" line="54"/>
         <source>XSD version: </source>
         <translation>XSD verzió:</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="97"/>
+        <location filename="../gml_importer.py" line="105"/>
         <source> layer </source>
         <translation> réteg </translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="105"/>
+        <location filename="../gml_importer.py" line="113"/>
         <source>Succesful GML import</source>
         <translation>Sikeres GML import</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="105"/>
+        <location filename="../gml_importer.py" line="113"/>
         <source> imported</source>
         <translation> importálva</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="115"/>
+        <location filename="../gml_importer.py" line="123"/>
         <source>ERROR</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../gml_importer.py" line="115"/>
+        <location filename="../gml_importer.py" line="123"/>
         <source> open/read error </source>
         <translation> megnyitási/olvasási hiba </translation>
+    </message>
+    <message>
+        <location filename="../gml_importer.py" line="39"/>
+        <source>CRITICAL error</source>
+        <translation>Végzetes hiba</translation>
+    </message>
+    <message>
+        <location filename="../gml_importer.py" line="39"/>
+        <source>Cannot write to GML file: </source>
+        <translation>Nem írható a GML fájl: </translation>
     </message>
 </context>
 <context>
     <name>GmlValidator</name>
     <message>
-        <location filename="../gml_validator.py" line="52"/>
+        <location filename="../gml_validator.py" line="55"/>
         <source>CRITICAL error</source>
         <translation>Végzetes hiba</translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="26"/>
+        <location filename="../gml_validator.py" line="29"/>
         <source>Python lxml package not found, please install it.</source>
         <translation>Az lxml Python csomag nem található, kérem telepítse.</translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="39"/>
+        <location filename="../gml_validator.py" line="42"/>
         <source>Schema not found: </source>
         <translation>Séma nem található meg:</translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="45"/>
+        <location filename="../gml_validator.py" line="48"/>
         <source>Error in schema: </source>
         <translation>Hiba a sémában: </translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="52"/>
+        <location filename="../gml_validator.py" line="55"/>
         <source>Invalid or missing GML file: </source>
         <translation>Hibás vagy hiányzó GML fájl: </translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="58"/>
+        <location filename="../gml_validator.py" line="61"/>
         <source>ERROR</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="58"/>
+        <location filename="../gml_validator.py" line="61"/>
         <source>Error in GML: </source>
         <translation>Hiba a GML-ben: </translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="61"/>
+        <location filename="../gml_validator.py" line="64"/>
         <source>INFO</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../gml_validator.py" line="61"/>
+        <location filename="../gml_validator.py" line="64"/>
         <source> is valid to : </source>
         <translation> megfelel ennek: </translation>
     </message>
@@ -247,7 +262,7 @@
         <translation>Geopackage megnyitás</translation>
     </message>
     <message>
-        <location filename="../gpkg_loader.py" line="54"/>
+        <location filename="../gpkg_loader.py" line="46"/>
         <source>Cannot load layer: </source>
         <translation>Nem lehet betölteni a réteget:</translation>
     </message>
@@ -285,44 +300,34 @@
         <translation>Betöltendő GML:</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="47"/>
+        <location filename="../import_plugin_dialog.py" line="49"/>
         <source>Empty field</source>
         <translation>Üres mező</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="47"/>
+        <location filename="../import_plugin_dialog.py" line="49"/>
         <source>Fill both fields</source>
         <translation>Töltse ki mindkét mezőt</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="51"/>
+        <location filename="../import_plugin_dialog.py" line="53"/>
         <source>Misisng file</source>
         <translation>Hiányzó fájl</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="51"/>
+        <location filename="../import_plugin_dialog.py" line="53"/>
         <source>GML file does not exist</source>
         <translation>GML fájl nem található</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="55"/>
+        <location filename="../import_plugin_dialog.py" line="57"/>
         <source>Existing file</source>
         <translation>Létező fájl</translation>
     </message>
     <message>
-        <location filename="../import_plugin_dialog.py" line="55"/>
+        <location filename="../import_plugin_dialog.py" line="57"/>
         <source>GeoPackage already exists, overwrite?</source>
         <translation>GeoPackage fájl már létezik, felülírja?</translation>
-    </message>
-    <message>
-        <location filename="../xxx.py" line="59"/>
-        <source>GML fájl kiválasztása</source>
-        <translation>GML fájl kiválasztás</translation>
-    </message>
-    <message>
-        <location filename="../xxx.py" line="61"/>
-        <source>Importálás</source>
-        <translation>Importálás</translation>
     </message>
 </context>
 <context>
@@ -357,6 +362,16 @@
         <location filename="../xsd_structure.py" line="77"/>
         <source>Supported E-Ing XSD version: </source>
         <translation>Támogatott E-ING XSD verzió: </translation>
+    </message>
+    <message>
+        <location filename="../xsd_structure.py" line="110"/>
+        <source>Unsupported XSD geometry type: </source>
+        <translation>Nem támogatott XSD geometria típus: </translation>
+    </message>
+    <message>
+        <location filename="../xsd_structure.py" line="131"/>
+        <source>unsupported XSD field type: </source>
+        <translation>Nem támogatott XSD mező típus: </translation>
     </message>
 </context>
 </TS>

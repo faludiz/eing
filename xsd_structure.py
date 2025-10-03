@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os.path
+from qgis.PyQt.QtCore import QCoreApplication
 import xml.etree.ElementTree as ET
 from qgis.core import Qgis, QgsMessageLog
 from osgeo import ogr, osr
@@ -18,7 +19,7 @@ class XsdStructure:
 
     DEFAULT_NAMESPACE = { "xmlns": "http://www.w3.org/2001/XMLSchema" }
 
-    def __init__(self, iface, tr, xsd_version):
+    def __init__(self, iface, xsd_version):
         """Constructor.
 
         :param iface: An interface instance that will be passed to this class
@@ -28,7 +29,6 @@ class XsdStructure:
         """
         # Save reference to the QGIS interface
         self.iface = iface
-        self.tr = tr
         self.xsd_version = xsd_version
         self.supported_version = None
         self.layer_definitions = None
@@ -36,6 +36,9 @@ class XsdStructure:
 
         self.eov_spatial_reference = osr.SpatialReference()
         self.eov_spatial_reference.ImportFromEPSG(23700)
+
+    def tr(self, message):
+        return QCoreApplication.translate('GmlImporter', message)
 
     def get_layer_element_fields(self, layer_element, common_fields):
         """ process fields in layer nodes """
@@ -107,7 +110,7 @@ class XsdStructure:
         if xsd_geometry_name == 'gml:PointPropertyType':
             return ogr.wkbPoint
 
-        raise Exception(f"Nem támogatott XSD geometria típus: {xsd_geometry_name}")
+        raise Exception(self.tr("Unsupported XSD geometry type: ") + xsd_geometry_name)
 
     def get_field_type(self, xsd_field_type):
         if xsd_field_type in ['string', 'eing:nonEmptyString']:
@@ -128,7 +131,7 @@ class XsdStructure:
         if xsd_field_type in ['double', 'eing:double-or-empty']:
             return ogr.OFTReal
 
-        raise Exception("Nem támogatott XSD mező típus: " + xsd_field_type)
+        raise Exception(self.tr("Unsupported XSD field type: ") + xsd_field_type)
 
     def create_gpkg_layer(self, gpkg_data_source, layer_name):
         """ Create GeoPackage layer from processed XSD """

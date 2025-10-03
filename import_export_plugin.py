@@ -171,7 +171,7 @@ class GmlImportExport:
         # plugin is started
         if self.first_start_import:
             self.first_start_import = False
-            self.dlg_import = ImportDialog(self.tr)
+            self.dlg_import = ImportDialog()
 
         # is actual project empty?
         if len(QgsProject.instance().mapLayers().values()) > 0:
@@ -186,13 +186,13 @@ class GmlImportExport:
 
         # See if OK was pressed
         if result:
-            importer = GmlImporter(self.iface, self.tr)
+            importer = GmlImporter(self.iface)
             importer.import_to_geopackage(self.dlg_import.import_gml_path.filePath(),
                                           self.dlg_import.import_gpkg_path.filePath())
 
             if self.dlg_import.load_check.isChecked():
                 # Load layers
-                loader = GpkgLoader(self.iface, self.tr)
+                loader = GpkgLoader(self.iface)
                 loader.load_layers(self.dlg_import.import_gpkg_path.filePath())
 
     def run_export(self):
@@ -220,7 +220,7 @@ class GmlImportExport:
 
         # See if OK was pressed
         if result:
-            exporter = GmlExporter(self.iface, self.tr)
+            exporter = GmlExporter(self.iface)
             exporter.export_to_gml(self.dlg_export.export_gpkg_path.filePath(), self.dlg_export.export_gml_path.filePath())
 
     def run_load(self):
@@ -238,7 +238,7 @@ class GmlImportExport:
         result = self.dlg_load.exec_()
         # See if OK was pressed
         if result:
-            loader = GpkgLoader(self.iface, self.tr)
+            loader = GpkgLoader(self.iface)
             loader.load_layers(self.dlg_load.gpkg_path.filePath())
 
     def run_validate(self):
@@ -256,5 +256,5 @@ class GmlImportExport:
         result = self.dlg_validate.exec_()
         # See if OK was pressed
         if result:
-            validator = GmlValidator(self.iface, self.tr)
+            validator = GmlValidator(self.iface)
             validator.validate_gml(self.dlg_validate.gml.filePath())

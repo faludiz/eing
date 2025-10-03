@@ -15,6 +15,7 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt.QtWidgets import QDialog, QMessageBox
+from qgis.PyQt.QtCore import QCoreApplication
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -24,10 +25,9 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 class ImportDialog(QDialog, FORM_CLASS):
     """ Dialog to specify input gml file and output GeoPackage """
 
-    def __init__(self, tr, parent=None):
+    def __init__(self, parent=None):
         """Constructor."""
         super(ImportDialog, self).__init__(parent)
-        self.tr = tr
         self.setupUi(self)
 
         self.import_gml_path.fileChanged.connect(self.import_gml_path_changed)
@@ -36,6 +36,8 @@ class ImportDialog(QDialog, FORM_CLASS):
         self.button_box.accepted.disconnect(self.accept)
         self.button_box.accepted.connect(self.accept_import)
 
+    def tr(self, message):
+        return QCoreApplication.translate('ImportDialog', message)
     def import_gml_path_changed(self):
         """ update gpkg field """
         self.import_gpkg_path.setFilePath(self.import_gml_path.filePath().replace(".gml", ".gpkg"))

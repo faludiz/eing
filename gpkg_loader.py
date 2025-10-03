@@ -2,6 +2,7 @@
    Load layers from a GeoPackage and order by geometry type
 """
 import os.path
+from qgis.PyQt.QtCore import QCoreApplication
 from osgeo import ogr
 from qgis.core import Qgis, QgsProject
 
@@ -9,11 +10,13 @@ class GpkgLoader():
     """ loader class for GeoPackage
         :param iface: QGIS iface object
     """
-    def __init__(self, iface, tr):
+    def __init__(self, iface):
         """ initialize """
         self.iface = iface
-        self.tr = tr
         self.plugin_dir = os.path.dirname(__file__)
+
+    def tr(self,  message):
+        return QCoreApplication.translate('GpkgLoader', message)
 
     def load_layers(self, gpkg_path, layer_list=None):
         """ Load layers from GeoPackage

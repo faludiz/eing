@@ -1,5 +1,6 @@
 """ validate E-Ing GML document """
 import os.path
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtWidgets import QMessageBox
 
 from .gml_importer import GmlImporter
@@ -9,11 +10,13 @@ class GmlValidator():
 
     MESSAGE_TAG = 'GML validation'
 
-    def __init__(self, iface, tr):
+    def __init__(self, iface):
         """ initialize """
         self.iface = iface
-        self.tr = tr
         self.plugin_dir = os.path.dirname(__file__)
+
+    def tr(self,  message):
+        return QCoreApplication.translate('GmlValidator', message)
 
     def validate_gml(self, gml_path):
         """ validate a gml doc 
@@ -27,7 +30,7 @@ class GmlValidator():
                                  self.tr("Python lxml package not found, please install it."))
             return
 
-        importer = GmlImporter(self.iface, self.tr)
+        importer = GmlImporter(self.iface)
         importer.import_gml_metadata_to_gpkg(gml_path)
         #gml_data_source = ogr.GetDriverByName('gml').Open(gml_path)
         name = f"eing_{importer.xsd_version}.xsd"

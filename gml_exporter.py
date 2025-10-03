@@ -2,8 +2,10 @@
 
 """ Export non empty layers from GeoPackage to GML """
 
+import os
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 from qgis.PyQt.QtWidgets import QMessageBox
+from qgis.PyQt.QtCore import QCoreApplication
 from osgeo import ogr
 
 class GmlExporter:
@@ -11,7 +13,7 @@ class GmlExporter:
 
     MESSAGE_TAG = 'GML export'
 
-    def __init__(self, iface, tr):
+    def __init__(self, iface):
         """Constructor.
 
         :param iface: An interface instance that will be passed to this class
@@ -21,7 +23,9 @@ class GmlExporter:
         """
         # Save reference to the QGIS interface
         self.iface = iface
-        self.tr = tr
+
+    def tr(self, message):
+        return QCoreApplication.translate('GmlExporter', message)
 
     def format_float(self, number):
         """ remove trailing zeros """
@@ -151,6 +155,10 @@ class GmlExporter:
         except:
             QMessageBox.critical(None, self.tr("CRITICAL error"),
                                  self.tr("Cannot open GeoPackage: ") + gpkg_path)
+            return
+        if not os.access(gml_path, os.W_OK):
+            QMessageBox.critical(None, self.tr("CRITICAL error"),
+                                 self.tr("Cannot write to GML file: ") + gml_path)
             return
 
         root = Element('gml:FeatureCollection')

@@ -6,6 +6,7 @@
 
 import os.path
 import xml.etree.ElementTree as ET
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import Qgis, QgsMessageLog
 from qgis.PyQt.QtWidgets import QMessageBox
 from osgeo import ogr
@@ -16,7 +17,7 @@ class GmlImporter:
 
     MESSAGE_TAG = 'GML import'
 
-    def __init__(self, iface, tr):
+    def __init__(self, iface):
         """Constructor.
 
         :param iface: An interface instance that will be passed to this class
@@ -26,12 +27,19 @@ class GmlImporter:
         """
         # Save reference to the QGIS interface
         self.iface = iface
-        self.tr = tr
         self.xsd_version = "not defined"
         self.metadata = {}
 
+    def tr(self, message):
+        return QCoreApplication.translate('GmlImporter', message)
+
     def import_gml_metadata_to_gpkg(self, gml_path):
-        """ Pocess GML metadata """
+        """ Process GML metadata """
+        if not os.access(gml_path, os.W_OK):
+            QMessageBox.critical(None, self.tr("CRITICAL error"),
+                                 self.tr("Cannot write to GML file: ") + gml_path)
+            return
+
         gml_doc = ET.parse(gml_path)
         root = gml_doc.getroot()
 
@@ -64,7 +72,7 @@ class GmlImporter:
         for key, value in self.metadata.items():
             converted_gpkg_data_source.SetMetadataItem(key, value)
 
-        xsd_structure = XsdStructure(self.iface, self.tr, self.xsd_version)
+        xsd_structure = XsdStructure(self.iface, self.xsd_version)
         xsd_structure.build_structure()
 
         try:
