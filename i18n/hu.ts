@@ -85,7 +85,7 @@
         <translation>Nem kezelt geometria típus:</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="160"/>
+        <location filename="../gml_exporter.py" line="161"/>
         <source>CRITICAL error</source>
         <translation>Végzetes hiba</translation>
     </message>
@@ -95,17 +95,17 @@
         <translation>Nem lehet megnyitni a GeoPackage fájlt:</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="196"/>
+        <location filename="../gml_exporter.py" line="197"/>
         <source>INFO</source>
         <translation>Információ</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="196"/>
+        <location filename="../gml_exporter.py" line="197"/>
         <source>Succesful GML export</source>
         <translation>Sikeres GML export</translation>
     </message>
     <message>
-        <location filename="../gml_exporter.py" line="160"/>
+        <location filename="../gml_exporter.py" line="161"/>
         <source>Cannot write to GML file: </source>
         <translation>Nem írható a GML fájl: </translation>
     </message>
@@ -192,8 +192,8 @@
     </message>
     <message>
         <location filename="../gml_importer.py" line="39"/>
-        <source>Cannot write to GML file: </source>
-        <translation>Nem írható a GML fájl: </translation>
+        <source>Cannot read GML file: </source>
+        <translation>Nem olvasható a GML fájl: </translation>
     </message>
 </context>
 <context>
@@ -262,7 +262,7 @@
         <translation>Geopackage megnyitás</translation>
     </message>
     <message>
-        <location filename="../gpkg_loader.py" line="46"/>
+        <location filename="../gpkg_loader.py" line="49"/>
         <source>Cannot load layer: </source>
         <translation>Nem lehet betölteni a réteget:</translation>
     </message>
@@ -354,23 +354,23 @@
 <context>
     <name>XsdStructure</name>
     <message>
-        <location filename="../xsd_structure.py" line="70"/>
+        <location filename="../xsd_structure.py" line="73"/>
         <source>Used E-Ing XSD structure: </source>
         <translation>Használ E-ING XSD struktúra: </translation>
     </message>
     <message>
-        <location filename="../xsd_structure.py" line="77"/>
+        <location filename="../xsd_structure.py" line="80"/>
         <source>Supported E-Ing XSD version: </source>
         <translation>Támogatott E-ING XSD verzió: </translation>
     </message>
     <message>
-        <location filename="../xsd_structure.py" line="110"/>
+        <location filename="../xsd_structure.py" line="113"/>
         <source>Unsupported XSD geometry type: </source>
         <translation>Nem támogatott XSD geometria típus: </translation>
     </message>
     <message>
-        <location filename="../xsd_structure.py" line="131"/>
-        <source>unsupported XSD field type: </source>
+        <location filename="../xsd_structure.py" line="134"/>
+        <source>Unsupported XSD field type: </source>
         <translation>Nem támogatott XSD mező típus: </translation>
     </message>
 </context>
