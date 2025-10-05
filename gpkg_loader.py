@@ -39,12 +39,8 @@ class GpkgLoader():
                                                "|layername=" + layer,
                                                layer, 'ogr')
             if vlayer:
-                # set visibility off on empty layers
-                if vlayer.featureCount() == 0:
-                    node = QgsProject.instance().layerTreeRoot().findLayer(vlayer.id())
-                    if node:
-                        node.setItemVisibilityChecked(False)
-                loaded_layers.append(vlayer)    # save for deffered style loading
+                # save for deffered style loading and settings
+                loaded_layers.append(vlayer)
             else:
                 self.iface.messageBar().pushMessage("GeoPackage",
                                                     self.tr("Cannot load layer: ")
@@ -63,3 +59,11 @@ class GpkgLoader():
                                         "default.qml")
                 if os.path.exists(qml_path):
                     vlayer.loadNamedStyle(qml_path)
+            # collapse layer legend and turn on feature count
+            node = QgsProject.instance().layerTreeRoot().findLayer(vlayer.id())
+            if node:
+                node.setExpanded(False)
+                node.setCustomProperty("showFeatureCount", True)
+                # set visibility off on empty layers
+                if vlayer.featureCount() == 0:
+                    node.setItemVisibilityChecked(False)
