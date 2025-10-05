@@ -67,3 +67,6 @@ class GpkgLoader():
                 # set visibility off on empty layers
                 if vlayer.featureCount() == 0:
                     node.setItemVisibilityChecked(False)
+            self.iface.layerTreeView().refreshLayerSymbology(vlayer.id())
+        self.iface.mapCanvas().refreshAllLayers()
+
