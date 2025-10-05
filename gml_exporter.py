@@ -156,12 +156,10 @@ class GmlExporter:
             QMessageBox.critical(None, self.tr("CRITICAL error"),
                                  self.tr("Cannot open GeoPackage: ") + gpkg_path)
             return
-        
-        try:
-            with open(gml_path, 'a'):
-                pass
-        except:
-            QMessageBox.critical(None, self.tr("CRITICAL error"), self.tr("Cannot write to GML file: ") + gml_path)
+        gml_dir = os.path.dirname(gml_path) or "."
+        if not os.path.isdir(gml_dir) or not os.access(gml_dir, os.W_OK):
+            QMessageBox.critical(None, self.tr("CRITICAL error"),
+                                 self.tr("Cannot write to GML file: ") + gml_path)
             return
 
         root = Element('gml:FeatureCollection')

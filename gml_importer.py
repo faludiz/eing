@@ -35,9 +35,9 @@ class GmlImporter:
 
     def import_gml_metadata_to_gpkg(self, gml_path):
         """ Process GML metadata """
-        if not os.access(gml_path, os.W_OK):
+        if not os.access(gml_path, os.R_OK):
             QMessageBox.critical(None, self.tr("CRITICAL error"),
-                                 self.tr("Cannot write to GML file: ") + gml_path)
+                                 self.tr("Cannot read GML file: ") + gml_path)
             return
 
         gml_doc = ET.parse(gml_path)
