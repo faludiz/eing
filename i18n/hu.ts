@@ -82,7 +82,7 @@
     <message>
         <location filename="../gml_exporter.py" line="79"/>
         <source>Unsupported geometry type: </source>
-        <translation>Nem kezelt geometria típus:</translation>
+        <translation>Nem kezelt geometria típus: </translation>
     </message>
     <message>
         <location filename="../gml_exporter.py" line="161"/>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../gml_exporter.py" line="156"/>
         <source>Cannot open GeoPackage: </source>
-        <translation>Nem lehet megnyitni a GeoPackage fájlt:</translation>
+        <translation>Nem lehet megnyitni a GeoPackage fájlt: </translation>
     </message>
     <message>
         <location filename="../gml_exporter.py" line="197"/>
@@ -153,12 +153,12 @@
     <message>
         <location filename="../gml_importer.py" line="50"/>
         <source>GML identifier: </source>
-        <translation>GML azonosító:</translation>
+        <translation>GML azonosító: </translation>
     </message>
     <message>
         <location filename="../gml_importer.py" line="54"/>
         <source>XSD version: </source>
-        <translation>XSD verzió:</translation>
+        <translation>XSD verzió: </translation>
     </message>
     <message>
         <location filename="../gml_importer.py" line="105"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="../gml_validator.py" line="42"/>
         <source>Schema not found: </source>
-        <translation>Séma nem található meg:</translation>
+        <translation>Séma nem található meg: </translation>
     </message>
     <message>
         <location filename="../gml_validator.py" line="48"/>
@@ -264,7 +264,7 @@
     <message>
         <location filename="../gpkg_loader.py" line="49"/>
         <source>Cannot load layer: </source>
-        <translation>Nem lehet betölteni a réteget:</translation>
+        <translation>Nem lehet betölteni a réteget: </translation>
     </message>
 </context>
 <context>
@@ -296,7 +296,7 @@
     </message>
     <message>
         <location filename="../import_plugin_dialog_base.ui" line="62"/>
-        <source>GML to import::</source>
+        <source>GML to import:</source>
         <translation>Betöltendő GML:</translation>
     </message>
     <message>
@@ -340,7 +340,7 @@
     <message>
         <location filename="../load_plugin_dialog.py" line="31"/>
         <source>GeoPackage field is obligatory</source>
-        <translation>Töltse ki a mezőt!</translation>
+        <translation>A GeoPackage mező kitöltése kötelező</translation>
     </message>
 </context>
 <context>
