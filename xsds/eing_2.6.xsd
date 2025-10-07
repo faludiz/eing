@@ -634,7 +634,7 @@
 					<element name="JELKULCS" minOccurs="1" type="int" nillable="false"/>
 					<element name="EP_ID" minOccurs="0" type="long" nillable="false"/>
 					<element name="EOI_ID" minOccurs="0" type="long" nillable="false"/>
-					<element name="KCR_ID " minOccurs="0" type="int" nillable="false"/>
+					<element name="KCR_ID" minOccurs="0" type="int" nillable="false"/>
 					<element name="geometry" minOccurs="0" type="gml:PointPropertyType"/>
 				</sequence>
 			</extension>
